@@ -56,6 +56,7 @@ int main2(int argc, char* argv[]) {
 		cout << "unknown function";
 		return 0;
 	}
+	return 0;
 }
 
 int solve_sudoku(FILE* subject) {

@@ -1,6 +1,6 @@
 #pragma once
 #include "stdafx.h"
 
-vector<vector<int>>* create_sudokus(int number);
+void create_sudokus(int number, int result[][SIZE*SIZE]);
 
 vector<int> test_vector();

@@ -20,23 +20,23 @@ int create_sudoku(int number) {
 }
 */
 
-vector<vector<int>>* create_sudokus(int number) {
+void create_sudokus(int number, int result[][SIZE*SIZE]) {
 	Template_sudoku templ = Template_sudoku();
-	vector<vector<int>>* sudokus = new vector<vector<int>>(number);
+	//vector<vector<int>>* sudokus = new vector<vector<int>>(number);
 	//sudokus.resize(number);
 	
 	for (int count = 0; count < number; count++) {
 		//vector<int> & sudoku = sudokus[count];
-		vector<int> sudoku(sudokus->at(count));
-		sudoku.reserve(BOX_COUNT);
-		templ.create_from_template(sudoku);
+		//vector<int> sudoku(sudokus->at(count));
+		//sudoku.reserve(BOX_COUNT);
+		templ.create_from_template(result[count]);
+		templ.change2next();
 	}
-	return sudokus;
 }
 
 int main() {
-	vector<vector<int>>* mat = create_sudokus(1000);
-	getchar();
+	//vector<vector<int>>* mat = create_sudokus(1000);
+	//getchar();
 	return 0;
 }
 

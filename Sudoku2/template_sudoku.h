@@ -11,6 +11,6 @@ public:
 
 	bool change2next();
 	void record(FILE* fout, int* index, char buffer[]);
-	void create_from_template(vector<int> & sudoku);
+	void create_from_template(int sudoku[]);
 	/////
 };
