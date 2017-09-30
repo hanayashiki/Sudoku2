@@ -40,10 +40,12 @@ int Box::make_certain(int value, int members_posvalues[3][9]) {
 	this->row->make_certain(this);
 	this->column->make_certain(this);
 	this->block->make_certain(this);
+	this->sudoku->zeroes--;
 	return posvalue;
 }
 
 void Box::cancel_certain(int posvalue, int members_posvalues[3][9]) {
+	this->sudoku->zeroes++;
 	this->row->cancel_certain(this);
 	this->column->cancel_certain(this);
 	this->block->cancel_certain(this);

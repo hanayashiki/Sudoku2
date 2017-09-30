@@ -1,11 +1,8 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include <vector>
-#include "../Sudoku2/stdafx.h"
-#define SIZE 9
-#define GET_POS(i, j) ((i)*SIZE + (j))
-#define SUDOKU_MAX 10000
 
+
+int results[SUDOKU_MAX][SIZE*SIZE];
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
@@ -59,8 +56,6 @@ namespace Sudoku2Test
 			Treenode* root = create_treenode(-1, new string(""));
 			int counter = 0;
 
-			int results[3000][SIZE*SIZE];
-
 			//vector<vector<int>>* results = create_sudokus(number);
 			create_sudokus(number, results);
 
@@ -90,22 +85,18 @@ namespace Sudoku2Test
 				add_sudoku_to_tree(-1, &root, sudoku);
 				counter++;
 			}
-
-			
 		}
-
-
 
 		TEST_METHOD(create)
 		{
 			// TODO: 在此输入测试代码
-			test_c(1000);
+			test_c(10000);
 		}
 
 		TEST_METHOD(test_vec)
 		{
 			vector<int> v = test_vector();
-			getchar();
+			//getchar();
 		}
 
 	};

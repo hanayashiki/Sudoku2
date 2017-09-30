@@ -34,12 +34,6 @@ void create_sudokus(int number, int result[][SIZE*SIZE]) {
 	}
 }
 
-int main() {
-	//vector<vector<int>>* mat = create_sudokus(1000);
-	//getchar();
-	return 0;
-}
-
 vector<int> test_vector() {
 	vector<int> v = { 0,1,2,3,4 };
 	return v;

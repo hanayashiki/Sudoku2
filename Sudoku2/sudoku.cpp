@@ -22,6 +22,30 @@ Subject_sudoku::Subject_sudoku(string sudoku_str) {
 	initial();
 }
 
+Subject_sudoku::Subject_sudoku(int sudoku[SIZE * SIZE]) {
+	//cout << sudoku_str << endl;
+	zeroes = 0;
+	for (int i = 0; i < SIZE; i++) {
+		rows[i] = new Group(i);
+		columns[i] = new Group(i);
+		blocks[i] = new Group(i);
+	}
+	int rowno, columnno, blockno;
+	for (int counter = 0; counter < SIZE*SIZE; counter++) { // -- create boxes and put into groups
+		rowno = counter / 9;
+		columnno = counter % 9;
+		blockno = GET_BLOCKNO(rowno, columnno);
+		Box* box = new Box(this, rows[rowno], columns[columnno], blocks[blockno], sudoku[counter]);
+		rows[rowno]->push_back(box);
+		columns[columnno]->push_back(box);
+		blocks[blockno]->push_back(box);
+
+		zeroes += (sudoku[counter] == 0);
+	}
+	initial();
+}
+
+
 /* [copy construction] */
 Subject_sudoku::Subject_sudoku(const Subject_sudoku& sudoku) {
 	//cout << "create" << endl;
@@ -113,4 +137,13 @@ string Subject_sudoku::to_string() {
 		}
 	}
 	return sudoku;
+}
+
+void Subject_sudoku::to_array(int sudoku_array[SIZE * SIZE]) {
+	for (int i = 0; i < SIZE; i++) {
+		Group* row = this->rows[i];
+		for (int j = 0; j < SIZE; j++) {
+			sudoku_array[GET_POS(i, j)] = row->members[j]->cervalue;
+		}
+	}
 }

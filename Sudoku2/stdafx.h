@@ -12,7 +12,8 @@
 
 #define BUFFER_SIZE 1'000'000
 #define SIZE 9
-#define GET_BLOCKNO(ROWNO, COLUMNNO) (ROWNO / 3) * 3 + (COLUMNNO / 3);
+#define GET_POS(ROWNO, COLUMNNO) ((ROWNO)*SIZE + (COLUMNNO))
+#define GET_BLOCKNO(ROWNO, COLUMNNO) (ROWNO / 3) * 3 + (COLUMNNO / 3)
 
 #include <iostream>  
 using namespace std;
@@ -32,5 +33,7 @@ using namespace std;
 #include "group.h"
 #include "utils.h"
 #include "create.h"
+#include "solve.h"
+#include "mode_generatror.h"
 
 #endif

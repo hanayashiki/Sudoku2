@@ -45,6 +45,12 @@
     <ClInclude Include="create.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="solve.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mode_generatror.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -72,6 +78,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="create.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="solve.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mode_generator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
