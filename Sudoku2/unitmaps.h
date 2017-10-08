@@ -53,4 +53,15 @@ public:
 		cout << '\n';
 	}
 	void clear();
+
+	void read_matrix(int mat[SIZE * SIZE]) {
+		clear();
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				if (mat[9 * i + j] != 0) {
+					fill_in(mat[9 * i + j], i, j);
+				}
+			}
+		}
+	}
 };

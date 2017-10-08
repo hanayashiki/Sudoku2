@@ -47,4 +47,6 @@ public:
 		}
 		cout << endl;
 	}
+
+	/*TODO: implement dig and unlock */
 };

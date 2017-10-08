@@ -66,6 +66,7 @@ bool FgMap::lock(int figure_x, int index) {
 			// 更新最小的值
 		}
 		map[F2INDEX(figure_x)] &= INDEX2MASK(index);
+		assert(map[F2INDEX(figure_x)] != 0);
 		return true;
 	}
 	return false;

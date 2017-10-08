@@ -26,6 +26,7 @@ void UnitMaps::clear() {
 
 bool UnitMaps::fill_in(int figure, int i, int j) {
 	int group_id = GET_GROUP_ID(i, j);
+	assert(figure != 0);
 	assert(matrix[i][j] == 0);
 	matrix[i][j] = figure;
 	// lock up relevant rows and columns
