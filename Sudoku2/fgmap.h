@@ -22,16 +22,29 @@ private:
 	int min_map_index = 0;  // 指向 map 中 1 bit 最少的，优化推导
 	int min_map = INT32_MAX;
 public:
-	FgMap();
 	int type = -1;  // 是行还是列还是宫中的数字-位置映射
 	int id;  // 行，或列或宫的序号，从左到右从上到下自 0 递增。
 
+	FgMap();
+	void clear();
+	FgMap(int t, int id);
+
 	bool inside_lock(int figure, int place);
-
 	bool lock(int figure_x, int index);
-
 	bool outside_lock(int figure, int i, int j);
 
-	bool index2co(int index, int & i, int & j);
+	bool get_decisive(int & figure, int & i, int & j) const;
 
+	bool index2co(int index, int & i, int & j) const;
+	
+	void display_pos(int figure) const {
+		int v = map[F2INDEX(figure)];
+		cout << "possible poses for figure " << figure << ":" << endl;
+		for (int i = 0; i < 32; i++, v = (v >> 1)) {
+			if (v & 0x1) {
+				cout <<  (i+1) << " ";
+			}
+		}
+		cout << endl;
+	}
 };

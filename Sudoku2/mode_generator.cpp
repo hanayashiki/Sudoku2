@@ -81,3 +81,4 @@ bool generator_solve_sudoku(int puzzle[SIZE * SIZE], int targets[4], int puzzle_
 	
 	getchar();
 }*/
+

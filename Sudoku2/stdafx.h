@@ -38,5 +38,6 @@ using namespace std;
 #include "solve.h"
 #include "mode_generatror.h"
 #include "fgmap.h"
+#include "unitmaps.h"
 
 #endif
