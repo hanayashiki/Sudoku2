@@ -40,13 +40,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="box.h" />
     <ClInclude Include="create.h" />
+    <ClInclude Include="exchanger.h" />
     <ClInclude Include="group.h" />
     <ClInclude Include="mode_generatror.h" />
     <ClInclude Include="solve.h" />
@@ -161,6 +162,7 @@
   <ItemGroup>
     <ClCompile Include="box.cpp" />
     <ClCompile Include="create.cpp" />
+    <ClCompile Include="exchanger.cpp" />
     <ClCompile Include="group.cpp" />
     <ClCompile Include="mode_generator.cpp" />
     <ClCompile Include="solve.cpp" />

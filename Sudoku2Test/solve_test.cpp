@@ -83,11 +83,11 @@ namespace Sudoku2Test
 			test_s(mat_input, false);
 		}
 
-		TEST_METHOD(test_vec)
+		/*TEST_METHOD(test_vec)
 		{
 			vector<int> v = test_vector();
 			//getchar();
-		}
+		}*/
 
 	};
 }

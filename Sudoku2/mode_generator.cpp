@@ -60,9 +60,8 @@ bool generator_solve_sudoku(int puzzle[SIZE * SIZE], int targets[4], int puzzle_
 	return true;
 }
 
-int main() {
+/*int main() {
 	int puzzle[SIZE * SIZE] = {
-		/*0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -70,7 +69,8 @@ int main() {
 		0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0*/
+		0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0
 		0
 	};
 
@@ -80,4 +80,4 @@ int main() {
 	cout << generator_solve_sudoku(puzzle, targets, puzzle_template) << endl;
 	
 	getchar();
-}
+}*/
