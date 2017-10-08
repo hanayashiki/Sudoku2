@@ -54,6 +54,9 @@
     <ClInclude Include="exchanger.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="fgmap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -90,6 +93,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="exchanger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fgmap.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -149,6 +149,7 @@
     <ClInclude Include="box.h" />
     <ClInclude Include="create.h" />
     <ClInclude Include="exchanger.h" />
+    <ClInclude Include="fgmap.h" />
     <ClInclude Include="group.h" />
     <ClInclude Include="mode_generatror.h" />
     <ClInclude Include="solve.h" />
@@ -163,6 +164,7 @@
     <ClCompile Include="box.cpp" />
     <ClCompile Include="create.cpp" />
     <ClCompile Include="exchanger.cpp" />
+    <ClCompile Include="fgmap.cpp" />
     <ClCompile Include="group.cpp" />
     <ClCompile Include="mode_generator.cpp" />
     <ClCompile Include="solve.cpp" />

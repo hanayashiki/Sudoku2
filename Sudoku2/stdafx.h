@@ -37,5 +37,6 @@ using namespace std;
 #include "create.h"
 #include "solve.h"
 #include "mode_generatror.h"
+#include "fgmap.h"
 
 #endif

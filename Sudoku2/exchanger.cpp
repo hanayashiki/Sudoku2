@@ -1,6 +1,5 @@
 #include "stdafx.h"
 
-
 Exchanger::Exchanger(int* perms[EXCHANGER_GROUPS_COUNT][EXCHANGER_GROUPS_SIZE]) {
 	/* copy perms */
 	for (int groupno = 0; groupno < EXCHANGER_GROUPS_COUNT; groupno++) {
