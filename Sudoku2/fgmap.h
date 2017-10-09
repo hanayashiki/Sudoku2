@@ -17,8 +17,10 @@
 
 class FgMap {
 private:
-	int map[9] = { 0 } ;  // map[i] 的 第 j 个 bit 为 1 表示数字 i+1 能填入第 j 个空
-	int pos_count[9] = { 0 };   // pos_count[i] 记录了 map[i] 里面有多少个 bit 是 1.
+	int map[SIZE] = { 0 } ;  // map[i] 的 第 j 个 bit 为 1 表示数字 i+1 能填入第 j 个空
+	int pos_count[SIZE] = { 0 };   // pos_count[i] 记录了 map[i] 里面有多少个 bit 是 1.
+	ConstraintTable constr[SIZE];  // constr[i] 是数字 i + 1 受到的制约
+
 public:
 	int type = -1;  // 是行还是列还是宫中的数字-位置映射
 	int id;  // 行，或列或宫的序号，从左到右从上到下自 0 递增。
@@ -32,8 +34,11 @@ public:
 	bool outside_lock(int figure, int i, int j, bool unlock = false);
 
 	bool get_decisive(int & figure, int & i, int & j) const;
+	void dump_constr(constraint constr[], int & num, int fig);
 
 	bool index2co(int index, int & i, int & j) const;
+
+	bool co2index(int & index, int i, int j) const;
 	
 	void display_pos(int figure) const {
 		int v = map[F2INDEX(figure)];

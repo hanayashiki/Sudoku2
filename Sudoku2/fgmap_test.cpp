@@ -40,16 +40,16 @@ int main() {
 		0, 0, 7, 2, 0, 0, 0, 3, 0,
 		3, 0, 0, 0, 0, 5, 0, 0, 8
 	};
-	for (int rep = 0; rep < 50000; rep++) {
+	for (int rep = 0; rep < 1000; rep++) {
 		unitmaps.read_matrix(mat);
 		//unitmaps.show();
 		//unitmaps.row_maps[0].display_pos(1);
 		//unitmaps.row_maps[0].display_pos(6);
 
-		//int step = 0;
+		int step = 0;
 		while (bool found = unitmaps.get_decisive(figure, i, j)) {
 			unitmaps.fill_in(figure, i, j);
-			//cout << "step: " << step << endl;
+			//cout << "step: " << ++step << endl;
 			//cout << "figure: " << figure;
 			//cout << " i: " << i;
 			//cout << " j: " << j << endl;
@@ -58,6 +58,7 @@ int main() {
 		//cout << "solve quit" << endl;
 		//unitmaps.show();
 	}
+	unitmaps.show();
 	getchar();
 	return 0;
 }

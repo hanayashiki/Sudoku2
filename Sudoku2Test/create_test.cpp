@@ -108,7 +108,7 @@ namespace Sudoku2Test
 		TEST_METHOD(create)
 		{
 			// TODO: 在此输入测试代码
-			test_c(1000000);
+			test_c(100);
 		}
 
 		/*TEST_METHOD(test_vec)

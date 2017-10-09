@@ -60,6 +60,7 @@ namespace Sudoku2Test
 			unitmaps.get_decisive(figure, i, j);
 			Assert::AreEqual(figure, 6);
 		}
+
 		TEST_METHOD(advanced_speed_test2)
 		{
 			UnitMaps unitmaps;
@@ -78,7 +79,7 @@ namespace Sudoku2Test
 				0, 0, 7, 2, 0, 0, 0, 3, 0,
 				3, 0, 0, 0, 0, 5, 0, 0, 8
 			};
-			for (int rep = 0; rep < 1000; rep++) {
+			for (int rep = 0; rep < 50000; rep++) {
 				unitmaps.read_matrix(mat);
 				int step = 0;
 				while (bool found = unitmaps.get_decisive(figure, i, j)) {

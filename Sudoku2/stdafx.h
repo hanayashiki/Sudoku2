@@ -25,7 +25,9 @@ using namespace std;
 #include <algorithm>  
 #include <string> 
 #include <vector>
+#include <list>
 #include <assert.h>
+#include "constraint_table.h"
 #include "templet.h"
 #include "template_sudoku.h"
 #include "subject_sudoku.h"

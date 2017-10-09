@@ -70,3 +70,20 @@ bool UnitMaps::get_decisive(int & figure, int & i, int & j) {
 	//cout << "no decisive." << endl;
 	return false;
 }
+
+void UnitMaps::get_constraints(constraint constr[], int & num, int fig, int id, int unit_type) {
+	switch (unit_type) {
+	case ROW:
+		row_maps[id].dump_constr(constr, num, fig);
+		//assert(num > 0);
+		break;
+	case COLUMN:
+		column_maps[id].dump_constr(constr, num, fig);
+		//assert(num > 0);
+		break;
+	case GROUP:
+		group_maps[id].dump_constr(constr, num, fig);
+		//assert(num > 0);
+		break;
+	}
+}

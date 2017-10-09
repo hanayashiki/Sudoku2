@@ -24,13 +24,36 @@ void FgMap::clear() {
 bool FgMap::inside_lock(int figure, int index, bool unlock) {
 	// 在单元中位置为index(zero indexed)填入一个了数，
 	// 扼杀了这个数字的所有可能性以及其他数的填入位置的可能性。
+	int pos_x, pos_y;
 	map[F2INDEX(figure)] &= 0;
 	pos_count[F2INDEX(figure)] = 0;
 
 	//cout << "inside_lock: " << endl;
-
+	index2co(index, pos_x, pos_y);
 	for (int figure_x = 1; figure_x <= 9; figure_x++) {
-		lock(figure_x, index, unlock);
+		//cout << "inside lock :" << endl;
+		if (lock(figure_x, index, unlock)) {
+			constr[F2INDEX(figure_x)].add_constr(figure, pos_x, pos_y);
+		}
+	}
+
+	return true;
+}
+
+bool FgMap::outside_lock(int figure, int i, int j, bool unlock) {
+	// 外界在数独下标为 (i,j) (zero-indexed) 的位置填入了一个数
+	// 就使得一个单元中，对应的数字不能与之发生冲突，从而减少了某些可能性
+	for (int _index = 0; _index < 9; _index++) {
+		int x, y;
+		//assert(index < 9);
+		index2co(_index, x, y);
+		if (SAMEGROUP(x, y, i, j) || (x == i) || (y == j)) {
+			//cout << "outside lock, figure: " << figure << endl;
+			//cout << "outside lock :" << endl;
+			if (lock(figure, _index, unlock)) {
+				constr[F2INDEX(figure)].add_constr(figure, i, j);
+			}
+		}
 	}
 
 	return true;
@@ -76,22 +99,6 @@ bool FgMap::lock(int figure_x, int index, bool unlock) {
 	return false;
 }
 
-bool FgMap::outside_lock(int figure, int i, int j, bool unlock) {
-	// 外界在数独下标为 (i,j) (zero-indexed) 的位置填入了一个数
-	// 就使得一个单元中，对应的数字不能与之发生冲突，从而减少了某些可能性
-	for (int _index = 0; _index < 9; _index++) {
-		int x, y;
-		//assert(index < 9);
-		index2co(_index, x, y);
-		if (SAMEGROUP(x, y, i, j) || (x == i) || (y == j)) {
-			//cout << "outside lock, figure: " << figure << endl;
-			lock(figure, _index, unlock);
-		}
-	}
-
-	return true;
-}
-
 bool FgMap::get_decisive(int & figure, int &i, int &j) const{
 	//cout << "type: " << type << endl;
 	//cout << "min_map: " << min_map << endl;
@@ -112,7 +119,12 @@ bool FgMap::get_decisive(int & figure, int &i, int &j) const{
 	return min_count == 1;
 }
 
+void FgMap::dump_constr(constraint tg[], int & num, int fig) {
+	constr[F2INDEX(fig)].dump_constr(tg, num);
+}
+
 bool FgMap::index2co(int index, int & i, int & j) const{
+
 	assert(index < 9);
 	// 将单元内部的序号转化为数独矩阵坐标
 	int base_x, base_y;
@@ -139,4 +151,26 @@ bool FgMap::index2co(int index, int & i, int & j) const{
 	assert(j <= 8);
 	return true;
 }
+
+bool FgMap::co2index(int & index, int i, int j) const {
+	assert(index < 9);
+	// 将数独矩阵坐标转化为单元内部的序号
+	switch (type) {
+	case ROW:
+		index = j;
+		break;
+	case COLUMN:
+		index = i;
+		break;
+	case GROUP:
+		index = 3 * (i % 3) + (j % 3);
+		break;
+	default:
+		return false;
+	}
+	assert(i <= 8);
+	assert(j <= 8);
+	return true;
+}
+
 
