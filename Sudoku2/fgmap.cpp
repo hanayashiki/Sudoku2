@@ -3,19 +3,13 @@
 FgMap::FgMap(int unit_type, int unit_id) {
 	id = unit_id;
 	type = unit_type;
-	for (int index = 0; index < SIZE; index++) {
-		map[index] = 0x1FF;
-		pos_count[index] = 9;
-	}
+	clear();
 }
 
 FgMap::FgMap() {
 	id = 0;
 	type = 0;
-	for (int index = 0; index < SIZE; index++) {
-		map[index] = 0x1FF;
-		pos_count[index] = 9;
-	}
+	clear();
 }
 
 void FgMap::clear() {
@@ -23,13 +17,11 @@ void FgMap::clear() {
 		map[index] = 0x1FF;
 		pos_count[index] = 9;
 	}
-	min_map_index = 0;
-	min_map = INT32_MAX;
 }
 
 
 
-bool FgMap::inside_lock(int figure, int index) {
+bool FgMap::inside_lock(int figure, int index, bool unlock) {
 	// 在单元中位置为index(zero indexed)填入一个了数，
 	// 扼杀了这个数字的所有可能性以及其他数的填入位置的可能性。
 	map[F2INDEX(figure)] &= 0;
@@ -38,41 +30,53 @@ bool FgMap::inside_lock(int figure, int index) {
 	//cout << "inside_lock: " << endl;
 
 	for (int figure_x = 1; figure_x <= 9; figure_x++) {
-		lock(figure_x, index);
+		lock(figure_x, index, unlock);
 	}
 
 	return true;
 }
 
-bool FgMap::lock(int figure_x, int index) {
-	if (map[F2INDEX(figure_x)] & INDEX2TARGETBIT(index)) {
-		/*if (figure_x == 1) {
+bool FgMap::lock(int figure_x, int index, bool unlock) {
+	if (unlock == false) {
+		if (map[F2INDEX(figure_x)] & INDEX2TARGETBIT(index)) {
+			/*if (figure_x == 1) {
+				cout << "	locked. figure_x: " << figure_x << endl;
+				cout << "	id: " << id << endl;
+				cout << "	type: " << type << endl;
+				cout << "	index: " << index << endl;
+				cout << endl;
+			}*/
+
+			//  假如原来有这个可能性
+			pos_count[F2INDEX(figure_x)]--;
+			assert(pos_count[F2INDEX(figure_x)] > 0);
+			map[F2INDEX(figure_x)] &= INDEX2MASK(index);
+			assert(map[F2INDEX(figure_x)] != 0);
+			return true;
+		}
+	}
+	else {
+		if ((~map[F2INDEX(figure_x)]) & INDEX2TARGETBIT(index)) {
+			/*if (figure_x == 1) {
 			cout << "	locked. figure_x: " << figure_x << endl;
 			cout << "	id: " << id << endl;
 			cout << "	type: " << type << endl;
 			cout << "	index: " << index << endl;
 			cout << endl;
-		}*/
-	
-		//  假如原来有这个可能性
-		pos_count[F2INDEX(figure_x)]--;
-		assert(pos_count[F2INDEX(figure_x)] >= 0);
-		if ((pos_count[F2INDEX(figure_x)] <= min_map)
-			&& pos_count[F2INDEX(figure_x)] >= 1) {
-			// 如果是新的最小，且不为 0 种可能
-			min_map_index = F2INDEX(figure_x);
-			// 更新最小的下标
-			min_map = pos_count[F2INDEX(figure_x)];
-			// 更新最小的值
+			}*/
+
+			//  假如原来这个可能性已经被删除了，意味着取反以后这个位置为 1
+			pos_count[F2INDEX(figure_x)]++;
+			assert(pos_count[F2INDEX(figure_x)] <= 9);
+			map[F2INDEX(figure_x)] |= INDEX2MASK(index);
+			assert(map[F2INDEX(figure_x)] != 0);
+			return true;
 		}
-		map[F2INDEX(figure_x)] &= INDEX2MASK(index);
-		assert(map[F2INDEX(figure_x)] != 0);
-		return true;
 	}
 	return false;
 }
 
-bool FgMap::outside_lock(int figure, int i, int j) {
+bool FgMap::outside_lock(int figure, int i, int j, bool unlock) {
 	// 外界在数独下标为 (i,j) (zero-indexed) 的位置填入了一个数
 	// 就使得一个单元中，对应的数字不能与之发生冲突，从而减少了某些可能性
 	for (int _index = 0; _index < 9; _index++) {
@@ -81,7 +85,7 @@ bool FgMap::outside_lock(int figure, int i, int j) {
 		index2co(_index, x, y);
 		if (SAMEGROUP(x, y, i, j) || (x == i) || (y == j)) {
 			//cout << "outside lock, figure: " << figure << endl;
-			lock(figure, _index);
+			lock(figure, _index, unlock);
 		}
 	}
 
@@ -91,20 +95,21 @@ bool FgMap::outside_lock(int figure, int i, int j) {
 bool FgMap::get_decisive(int & figure, int &i, int &j) const{
 	//cout << "type: " << type << endl;
 	//cout << "min_map: " << min_map << endl;
-	if (min_map != 1) {
-		return false;
+	int min_index = 0;
+	int min_count = INT32_MAX;
+	for (int fig_index = 0; fig_index < SIZE; fig_index++) {
+		if (pos_count[fig_index] != 0 && (pos_count[fig_index] < min_count)) {
+			min_index = fig_index;
+			min_count = pos_count[fig_index];
+		}
 	}
-	else {
-		figure = min_map_index + 1;
-		int fill_index = get_one(map[min_map_index]);
-		int tmpi, tmpj;
-		assert(fill_index < 9);
-		index2co(fill_index, tmpi, tmpj);
-		i = tmpi;
-		j = tmpj;
-		return true;
+	if (min_count == 1) {
+		figure = min_index + 1;
+		index2co(get_one(map[min_index]), i, j);
+		//cout << "decisive: " << "figure " << figure << "("
+		//	<< i << "," << j << ")" << "index: " << min_index << endl;
 	}
-
+	return min_count == 1;
 }
 
 bool FgMap::index2co(int index, int & i, int & j) const{

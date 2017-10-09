@@ -40,18 +40,24 @@ int main() {
 		0, 0, 7, 2, 0, 0, 0, 3, 0,
 		3, 0, 0, 0, 0, 5, 0, 0, 8
 	};
-	unitmaps.read_matrix(mat);
-	bool found = unitmaps.get_decisive(figure, i, j);
-	unitmaps.show();
+	for (int rep = 0; rep < 50000; rep++) {
+		unitmaps.read_matrix(mat);
+		//unitmaps.show();
+		//unitmaps.row_maps[0].display_pos(1);
+		//unitmaps.row_maps[0].display_pos(6);
 
-	cout << "found: " << found << endl;
-	cout << "figure: " << figure << endl;
-	cout << "i: " << i << endl;
-	cout << "j: " << j << endl;
-
-	unitmaps.row_maps[0].display_pos(1);
-	unitmaps.row_maps[0].display_pos(9);
-
+		//int step = 0;
+		while (bool found = unitmaps.get_decisive(figure, i, j)) {
+			unitmaps.fill_in(figure, i, j);
+			//cout << "step: " << step << endl;
+			//cout << "figure: " << figure;
+			//cout << " i: " << i;
+			//cout << " j: " << j << endl;
+			//unitmaps.show();
+		}
+		//cout << "solve quit" << endl;
+		//unitmaps.show();
+	}
 	getchar();
 	return 0;
 }

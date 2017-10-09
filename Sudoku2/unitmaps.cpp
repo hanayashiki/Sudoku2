@@ -55,16 +55,18 @@ bool UnitMaps::fill_in(int figure, int i, int j) {
 bool UnitMaps::get_decisive(int & figure, int & i, int & j) {
 	for (int trial = 0; trial < 9; trial++) {
 		if (row_maps[trial].get_decisive(figure, i, j)) {
+			assert((i >= 0) && (j >= 0));
 			return true;
 		}
 		if (column_maps[trial].get_decisive(figure, i, j)) {
+			assert((i >= 0) && (j >= 0));
 			return true;
 		}
 		if (group_maps[trial].get_decisive(figure, i, j)) {
-			cout << "get decisive at group:" << trial << endl;
+			assert((i >= 0) && (j >= 0));
 			return true;
 		}
 	}
-	cout << "no decisive." << endl;
+	//cout << "no decisive." << endl;
 	return false;
 }

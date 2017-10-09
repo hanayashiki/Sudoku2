@@ -19,8 +19,6 @@ class FgMap {
 private:
 	int map[9] = { 0 } ;  // map[i] 的 第 j 个 bit 为 1 表示数字 i+1 能填入第 j 个空
 	int pos_count[9] = { 0 };   // pos_count[i] 记录了 map[i] 里面有多少个 bit 是 1.
-	int min_map_index = 0;  // 指向 map 中 1 bit 最少的，优化推导
-	int min_map = INT32_MAX;
 public:
 	int type = -1;  // 是行还是列还是宫中的数字-位置映射
 	int id;  // 行，或列或宫的序号，从左到右从上到下自 0 递增。
@@ -29,9 +27,9 @@ public:
 	void clear();
 	FgMap(int t, int id);
 
-	bool inside_lock(int figure, int place);
-	bool lock(int figure_x, int index);
-	bool outside_lock(int figure, int i, int j);
+	bool inside_lock(int figure, int place, bool unlock = false);
+	bool lock(int figure_x, int index, bool unlock = false);
+	bool outside_lock(int figure, int i, int j, bool unlock = false);
 
 	bool get_decisive(int & figure, int & i, int & j) const;
 
@@ -39,7 +37,7 @@ public:
 	
 	void display_pos(int figure) const {
 		int v = map[F2INDEX(figure)];
-		cout << "possible poses for figure " << figure << ":" << endl;
+		cout << "possible poses for figure " << figure << ": (1-indexed)" << endl;
 		for (int i = 0; i < 32; i++, v = (v >> 1)) {
 			if (v & 0x1) {
 				cout <<  (i+1) << " ";
@@ -48,5 +46,10 @@ public:
 		cout << endl;
 	}
 
-	/*TODO: implement dig and unlock */
+	bool inside_unlock(int figure, int place) {
+		return inside_lock(figure, place, true);
+	}
+	bool outside_unlock(int figure, int i, int j, int place) {
+		return outside_lock(figure, i, j, true);
+	}
 };
