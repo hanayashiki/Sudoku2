@@ -1,10 +1,9 @@
 #include "stdafx.h"
 
-int main() {
+int main_limit_test() {
 	UnitMaps unitmaps;
 	int figure = -1, i = 0xffff, j = 0xffff;
-	constraint constr[SIZE];
-	int constr_count = -1;
+
 	int mat[SIZE*SIZE] =
 	{
 		0, 0, 0, 0, 0, 0, 0, 0, 0,

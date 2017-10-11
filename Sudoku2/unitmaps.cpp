@@ -17,6 +17,11 @@ void UnitMaps::clear() {
 		row_maps[id].type = ROW;
 		column_maps[id].type = COLUMN;
 		group_maps[id].type = GROUP;
+
+		row_maps[id].Upper = this;
+		column_maps[id].Upper = this;
+		group_maps[id].Upper = this;
+
 		for (int j = 0; j < SIZE; j++) {
 			matrix[id][j] = 0;
 		}
@@ -52,11 +57,12 @@ bool UnitMaps::fill_in(int figure, int i, int j) {
 	return true;
 }
 
-bool UnitMaps::hole(int i, int j) {
+int UnitMaps::hole(int i, int j) {
+	//cout << "hole :" << i << ", " << j << endl;
 	assert(matrix[i][j] != 0);
 	int group_id = GET_GROUP_ID(i, j);
 	int old_fig = matrix[i][j];
-	cout << "hole :" << i << ", " << j << endl;
+
 	matrix[i][j] = 0;
 	// unlock relevant row and columns
 	row_maps[i].inside_unlock(old_fig, j);
@@ -77,7 +83,8 @@ bool UnitMaps::hole(int i, int j) {
 	for (int group_index = 0; group_index < RELEVANT; group_index++) {
 		group_maps[group_id2relevant_groups[group_id][group_index]].outside_unlock(old_fig, i, j);
 	}
-	return true;
+
+	return old_fig;
 }
 
 bool UnitMaps::get_decisive(int & figure, int & i, int & j) {
@@ -99,19 +106,21 @@ bool UnitMaps::get_decisive(int & figure, int & i, int & j) {
 	return false;
 }
 
-void UnitMaps::get_constraints(constraint constr[], int & num, int fig, int id, int unit_type) {
-	switch (unit_type) {
-	case ROW:
-		row_maps[id].dump_constr(constr, num, fig);
-		//assert(num > 0);
-		break;
-	case COLUMN:
-		column_maps[id].dump_constr(constr, num, fig);
-		//assert(num > 0);
-		break;
-	case GROUP:
-		group_maps[id].dump_constr(constr, num, fig);
-		//assert(num > 0);
-		break;
+bool UnitMaps::get_decisive_none_zero(int & figure, int & i, int & j) {
+	for (int trial = 0; trial < 9; trial++) {
+		if (row_maps[trial].get_decisive_none_zero(figure, i, j)) {
+			assert((i >= 0) && (j >= 0));
+			return true;
+		}
+		if (column_maps[trial].get_decisive_none_zero(figure, i, j)) {
+			assert((i >= 0) && (j >= 0));
+			return true;
+		}
+		if (group_maps[trial].get_decisive_none_zero(figure, i, j)) {
+			assert((i >= 0) && (j >= 0));
+			return true;
+		}
 	}
+	//cout << "no decisive." << endl;
+	return false;
 }

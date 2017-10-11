@@ -1,4 +1,10 @@
 #include "stdafx.h"
+#define HOLE_I 0
+#define HOLE_J 0
+#define REPEAT 10000
+
+UnitMaps unitmaps;
+int condition[SIZE*SIZE] = { 0 };
 
 int main() {
 	int mat[SIZE*SIZE] = {
@@ -12,8 +18,40 @@ int main() {
 		9,4,1,7,2,6,8,5,3,
 		5,2,6,3,1,8,9,4,7
 	};
+	int out[SIZE*SIZE] = { 0 };
+
+	for (int rep = 0; rep < REPEAT; rep++) {
+		unitmaps.~UnitMaps();
+		new(&unitmaps)UnitMaps;
+		dig(mat, out, 55);
+		//unitmaps.show();
+	}
+	//display_1d(out, SIZE*SIZE, 9);
+	getchar();
+	return 0;
 }
 
-int dig(int mat[SIZE*SIZE]) {
-	return 0;
+bool dig(int mat[SIZE*SIZE], int out[SIZE*SIZE], int dig_tg) {
+	
+	unitmaps.read_matrix(mat);
+
+	return try_dig(HOLE_I, HOLE_J, 0 , dig_tg, out);
+}
+
+bool try_dig(int dig_x, int dig_y, int dig_count, int dig_tg, int out[SIZE*SIZE]) {
+	//cout << "dug: " << dig_count << endl;
+	if (dig_tg == dig_count) {
+		return true;
+	}
+	else {
+		int decisive_figure, x, y;
+		unitmaps.hole(dig_x, dig_y);
+		//unitmaps.show();
+		if (unitmaps.get_decisive_none_zero(decisive_figure, x, y)) {
+			return try_dig(x, y, dig_count + 1, dig_tg, out);
+		}
+	}
+	//cout << "failure" << endl;
+	unitmaps.dump_matrix2arr(out);
+	return false;
 }

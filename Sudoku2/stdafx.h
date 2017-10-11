@@ -27,7 +27,6 @@ using namespace std;
 #include <vector>
 #include <list>
 #include <assert.h>
-#include "constraint_table.h"
 #include "templet.h"
 #include "template_sudoku.h"
 #include "subject_sudoku.h"
@@ -41,5 +40,7 @@ using namespace std;
 #include "mode_generatror.h"
 #include "fgmap.h"
 #include "unitmaps.h"
+#include "fgmap.h"
+#include "dig.h"
 
 #endif

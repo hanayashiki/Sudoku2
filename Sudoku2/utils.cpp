@@ -29,14 +29,6 @@ int get_one(int vect) {
 	return -1;
 }
 
-void show_constrs(constraint c[], int num) {
-	cout << "show constr: " << endl;
-	for (int index = 0; index < num; index++) {
-		printf("%d constrain: figure = %d at ( %d, %d ) (1-indexed)\n"
-			, index, c[index].figure, c[index].x + 1, c[index].y + 1);
-	}
-}
-
 void display_2d(int** two_d, int m, int n) {
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {

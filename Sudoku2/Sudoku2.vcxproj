@@ -215,8 +215,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="box.h" />
-    <ClInclude Include="constraint_table.h" />
     <ClInclude Include="create.h" />
+    <ClInclude Include="dig.h" />
     <ClInclude Include="exchanger.h" />
     <ClInclude Include="fgmap.h" />
     <ClInclude Include="group.h" />
@@ -233,7 +233,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="box.cpp" />
-    <ClCompile Include="constraint_table.cpp" />
     <ClCompile Include="constraint_test.cpp" />
     <ClCompile Include="create.cpp" />
     <ClCompile Include="dig.cpp" />

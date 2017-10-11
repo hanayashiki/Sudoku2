@@ -140,7 +140,7 @@ cout << generator_solve_sudoku(puzzle, targets, puzzle_template) << endl;
 getchar();
 }*/
 
-int main() {
+int main_puzzler_creator() {
 	int sudoku[81] = { 0 };
 	int puzzle[81] = { 0 };
 	FILE* fsudoku;
@@ -197,6 +197,7 @@ int main() {
 		}
 		cout << endl;
 	}*/
+	return 0;
 }
 
 

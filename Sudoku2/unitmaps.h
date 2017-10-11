@@ -38,11 +38,14 @@ public:
 	FgMap column_maps[9];
 	FgMap group_maps[9];
 
+	// 上次被挖掉的数的约束项
+
 	UnitMaps();
 	bool fill_in(int figure, int i, int j);  // 填入数字，更新 FgMap
-	bool hole(int i, int j);  // 挖去空格
+	int hole(int i, int j);  // 挖去空格
 	bool get_decisive(int & figure, int & i, int & j);  // 推导必然填入
-	void get_constraints(constraint constr[], int & num, int fig, int id, int unit_type);
+	bool get_decisive_none_zero(int & figure, int & i, int & j);  // 推导必然填入
+
 	void show() {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -62,6 +65,15 @@ public:
 				if (mat[9 * i + j] != 0) {
 					fill_in(mat[9 * i + j], i, j);
 				}
+			}
+		}
+	}
+
+	void dump_matrix2arr(int mat_out[SIZE*SIZE]) {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				// cout << matrix[i][j];
+				mat_out[9 * i + j] = matrix[i][j];
 			}
 		}
 	}

@@ -60,7 +60,10 @@
     <ClInclude Include="unitmaps.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="constraint_table.h">
+    <ClInclude Include="puzzle_creator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dig.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -108,9 +111,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="fgmap_test.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="constraint_table.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="constraint_test.cpp">

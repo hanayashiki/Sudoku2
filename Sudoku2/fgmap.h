@@ -9,22 +9,24 @@
 #define COLUMN 2
 #define GROUP 3
 
-#define F2INDEX(f) (f-1)
+#define F2INDEX(f) ((f)-1)
 #define INDEX2MASK(I) (~(1 << (I)))
 #define INDEX2TARGETBIT(I) (1 << (I))
 
 #define SAMEGROUP(x,y,i,j) (((x)/3 == (i)/3) && ((y)/3 == (j)/3))
+
+class UnitMaps;
 
 class FgMap {
 private:
 	int map[SIZE] = { 0 };  // map[i] 的 第 j 个 bit 为 1 表示数字 i+1 能填入第 j 个空
 	int limit[SIZE][SIZE] = { 0 };  // limit[i][j] 表示数字 i + 1 在 index 为 j 的地方受到约束的数量
 	int pos_count[SIZE] = { 0 };   // pos_count[i] 记录了 map[i] 里面有多少个 bit 是 1.
-	ConstraintTable constr[SIZE];  // constr[i] 是数字 i + 1 受到的制约
 
 public:
 	int type = -1;  // 是行还是列还是宫中的数字-位置映射
 	int id;  // 行，或列或宫的序号，从左到右从上到下自 0 递增。
+	UnitMaps * Upper;
 
 	FgMap();
 	void clear();
@@ -35,7 +37,7 @@ public:
 	bool outside_lock(int figure, int i, int j, bool unlock = false);
 
 	bool get_decisive(int & figure, int & i, int & j) const;
-	void dump_constr(constraint constr[], int & num, int fig);
+	bool get_decisive_none_zero(int & figure, int & i, int & j) const;
 
 	bool index2co(int index, int & i, int & j) const;
 
