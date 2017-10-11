@@ -36,3 +36,23 @@ void show_constrs(constraint c[], int num) {
 			, index, c[index].figure, c[index].x + 1, c[index].y + 1);
 	}
 }
+
+void display_2d(int** two_d, int m, int n) {
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			cout << two_d[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+void display_1d(int* two_d, int m, int cluster) {
+	cout << "display:" << endl;
+	for (int i = 0; i < m; i++) {
+		cout << two_d[i] << " ";
+		if ((cluster != 0) && ((i+1) % cluster == 0)) {
+			cout << endl;
+		}
+	}
+	cout << endl;
+}

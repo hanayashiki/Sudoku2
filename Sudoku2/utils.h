@@ -10,11 +10,6 @@ int get_one(int vect);
 
 void show_constrs(constraint c[], int num);
 
-void display_2d(int** two_d, int m, int n) {
-	for (int i = 0; i < m; i++) {
-		for (int j = 0; j < n; j++) {
-			cout << two_d[m][n] << " ";
-		}
-		cout << endl;
-	}
-}
+void display_2d(int** two_d, int m, int n);
+
+void display_1d(int* two_d, int m, int cluster = 0);

@@ -40,7 +40,7 @@ public:
 
 	UnitMaps();
 	bool fill_in(int figure, int i, int j);  // 填入数字，更新 FgMap
-	//bool hole(int i, int j);  // 挖去空格
+	bool hole(int i, int j);  // 挖去空格
 	bool get_decisive(int & figure, int & i, int & j);  // 推导必然填入
 	void get_constraints(constraint constr[], int & num, int fig, int id, int unit_type);
 	void show() {
@@ -65,4 +65,5 @@ public:
 			}
 		}
 	}
+
 };

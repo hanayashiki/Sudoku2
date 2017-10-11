@@ -52,6 +52,34 @@ bool UnitMaps::fill_in(int figure, int i, int j) {
 	return true;
 }
 
+bool UnitMaps::hole(int i, int j) {
+	assert(matrix[i][j] != 0);
+	int group_id = GET_GROUP_ID(i, j);
+	int old_fig = matrix[i][j];
+	cout << "hole :" << i << ", " << j << endl;
+	matrix[i][j] = 0;
+	// unlock relevant row and columns
+	row_maps[i].inside_unlock(old_fig, j);
+	for (int k = 0; k < 9; k++) {
+		if (k != i) {
+			row_maps[k].outside_unlock(old_fig, i, j);
+		}
+	}
+	column_maps[j].inside_unlock(old_fig, i);
+	for (int k = 0; k < 9; k++) {
+		if (k != j) {
+			column_maps[k].outside_unlock(old_fig, i, j);
+		}
+	}
+	assert(GET_GROUP_INDEX(i, j) < 9);
+	group_maps[group_id].inside_unlock(old_fig, GET_GROUP_INDEX(i, j));
+	// lock up relevant groups
+	for (int group_index = 0; group_index < RELEVANT; group_index++) {
+		group_maps[group_id2relevant_groups[group_id][group_index]].outside_unlock(old_fig, i, j);
+	}
+	return true;
+}
+
 bool UnitMaps::get_decisive(int & figure, int & i, int & j) {
 	for (int trial = 0; trial < 9; trial++) {
 		if (row_maps[trial].get_decisive(figure, i, j)) {

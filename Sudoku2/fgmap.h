@@ -55,7 +55,24 @@ public:
 	bool inside_unlock(int figure, int place) {
 		return inside_lock(figure, place, true);
 	}
-	bool outside_unlock(int figure, int i, int j, int place) {
+	bool outside_unlock(int figure, int i, int j) {
 		return outside_lock(figure, i, j, true);
 	}
+
+	void display_limit(int figure) {
+		switch (type) {
+		case ROW:
+			display_1d(limit[F2INDEX(figure)], 9);
+			break;
+		case COLUMN:
+			display_1d(limit[F2INDEX(figure)], 9);
+			break;
+		case GROUP:
+			display_1d(limit[F2INDEX(figure)], 9, 3);
+			break;
+		default:
+			assert(0);
+		}
+	}
+
 };

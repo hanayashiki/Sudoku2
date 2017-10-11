@@ -78,9 +78,14 @@ bool FgMap::lock(int figure_x, int index, bool unlock) {
 			assert(pos_count[F2INDEX(figure_x)] > 0);
 			map[F2INDEX(figure_x)] &= INDEX2MASK(index);
 			assert(map[F2INDEX(figure_x)] != 0);
-			return true;
 		}
 		limit[F2INDEX(figure_x)][index] ++;
+		if ((id == 2) && (type == GROUP)) {
+			cout << "figure_x: " << figure_x << "; " << "index: " << index << endl;
+			cout << "limit: " << limit[F2INDEX(figure_x)][index] << endl;
+			display_limit(1);
+		}
+		return true;
 	}
 	else {
 		if ((~map[F2INDEX(figure_x)]) & INDEX2TARGETBIT(index)) {
@@ -97,10 +102,15 @@ bool FgMap::lock(int figure_x, int index, bool unlock) {
 			assert(limit[F2INDEX(figure_x)][index] >= 0);
 			if (limit[F2INDEX(figure_x)][index] == 0) {
 				pos_count[F2INDEX(figure_x)]++;
-				map[F2INDEX(figure_x)] |= INDEX2MASK(index);
+				map[F2INDEX(figure_x)] |= INDEX2TARGETBIT(index);
 			}
-			return true;
+			if ((id == 2) && (type == GROUP)) {
+				cout << "figure_x: " << figure_x << "; " << "index: " << index << endl;
+				cout << "limit: " << limit[F2INDEX(figure_x)][index] << endl;
+				display_limit(1);
+			}
 		}
+		return true;
 	}
 	return false;
 }
