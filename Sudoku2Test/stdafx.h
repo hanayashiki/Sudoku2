@@ -11,7 +11,7 @@
 #include "CppUnitTest.h"
 
 // TODO: 在此处引用程序需要的其他头文件
-#define SUDOKU_MAX 10000
+#define SUDOKU_MAX 1000000
 #define SIZE 9
 
 #include "../Sudoku2/stdafx.h"
