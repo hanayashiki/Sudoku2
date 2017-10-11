@@ -122,5 +122,8 @@
     <ClCompile Include="dig.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="puzzle_creator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
