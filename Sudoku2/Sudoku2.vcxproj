@@ -235,6 +235,7 @@
     <ClCompile Include="constraint_table.cpp" />
     <ClCompile Include="constraint_test.cpp" />
     <ClCompile Include="create.cpp" />
+    <ClCompile Include="dig.cpp" />
     <ClCompile Include="exchanger.cpp" />
     <ClCompile Include="fgmap.cpp" />
     <ClCompile Include="fgmap_test.cpp" />
