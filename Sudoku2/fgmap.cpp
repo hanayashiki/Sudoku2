@@ -16,6 +16,9 @@ void FgMap::clear() {
 	for (int index = 0; index < SIZE; index++) {
 		map[index] = 0x1FF;
 		pos_count[index] = 9;
+		for (int place_index = 0; place_index < SIZE; place_index++) {
+			limit[index][place_index] = 0;
+		}
 	}
 }
 
@@ -77,6 +80,7 @@ bool FgMap::lock(int figure_x, int index, bool unlock) {
 			assert(map[F2INDEX(figure_x)] != 0);
 			return true;
 		}
+		limit[F2INDEX(figure_x)][index] ++;
 	}
 	else {
 		if ((~map[F2INDEX(figure_x)]) & INDEX2TARGETBIT(index)) {
@@ -89,10 +93,12 @@ bool FgMap::lock(int figure_x, int index, bool unlock) {
 			}*/
 
 			//  假如原来这个可能性已经被删除了，意味着取反以后这个位置为 1
-			pos_count[F2INDEX(figure_x)]++;
-			assert(pos_count[F2INDEX(figure_x)] <= 9);
-			map[F2INDEX(figure_x)] |= INDEX2MASK(index);
-			assert(map[F2INDEX(figure_x)] != 0);
+			limit[F2INDEX(figure_x)][index] --;
+			assert(limit[F2INDEX(figure_x)][index] >= 0);
+			if (limit[F2INDEX(figure_x)][index] == 0) {
+				pos_count[F2INDEX(figure_x)]++;
+				map[F2INDEX(figure_x)] |= INDEX2MASK(index);
+			}
 			return true;
 		}
 	}

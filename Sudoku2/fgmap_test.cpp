@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-int main() {
+int main_fgmap_test() {
 	UnitMaps unitmaps;
 	int figure = -1, i = 0xffff, j = 0xffff;
 

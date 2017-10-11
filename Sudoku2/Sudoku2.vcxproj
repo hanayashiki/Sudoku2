@@ -239,6 +239,7 @@
     <ClCompile Include="fgmap.cpp" />
     <ClCompile Include="fgmap_test.cpp" />
     <ClCompile Include="group.cpp" />
+    <ClCompile Include="limit_test.cpp" />
     <ClCompile Include="mode_generator.cpp" />
     <ClCompile Include="solve.cpp" />
     <ClCompile Include="stdafx.cpp">
