@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #define HOLE_I 0
 #define HOLE_J 0
-#define REPEAT 10000
+#define REPEAT 100
 
 UnitMaps unitmaps;
 int condition[SIZE*SIZE] = { 0 };
@@ -24,7 +24,7 @@ int main() {
 		unitmaps.~UnitMaps();
 		new(&unitmaps)UnitMaps;
 		dig(mat, out, 55);
-		//unitmaps.show();
+		unitmaps.show();
 	}
 	//display_1d(out, SIZE*SIZE, 9);
 	getchar();

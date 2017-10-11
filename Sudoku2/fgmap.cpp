@@ -105,7 +105,27 @@ bool FgMap::lock(int figure_x, int index, bool unlock) {
 			//assert(map[F2INDEX(figure_x)] != 0);
 			ret = true;
 		}
-		//limit[F2INDEX(figure_x)][index]++;
+		limit[F2INDEX(figure_x)][index]++;
+	}
+	else {
+		if ((~map[F2INDEX(figure_x)]) & INDEX2TARGETBIT(index)) {
+			/*if (figure_x == 1) {
+			cout << "	locked. figure_x: " << figure_x << endl;
+			cout << "	id: " << id << endl;
+			cout << "	type: " << type << endl;
+			cout << "	index: " << index << endl;
+			cout << endl;
+			}*/
+
+			//  假如原来这个可能性已经被删除了，意味着取反以后这个位置为 1
+			limit[F2INDEX(figure_x)][index] --;
+			assert(limit[F2INDEX(figure_x)][index] >= 0);
+			if (limit[F2INDEX(figure_x)][index] == 0) {
+				pos_count[F2INDEX(figure_x)]++;
+				map[F2INDEX(figure_x)] |= INDEX2TARGETBIT(index);
+			}
+			ret = true;
+		}
 	}
 	return ret;
 }
