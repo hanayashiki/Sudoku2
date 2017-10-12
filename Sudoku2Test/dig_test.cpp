@@ -96,10 +96,14 @@ namespace Sudoku2Test
 			fopen_s(&r,
 				"C:\\Users\\sandy2008\\Desktop\\ศํนค\\pair prgm\\sudoku2_new_repo\\Sudoku2\\Sudoku2Test\\sudoku.txt",
 				"r+");
+
+			Assert::IsNotNull(r);
+
 			while (read_file(r, mat)) {
-				unitmaps.read_matrix(mat);
-				unitmaps.
+				dig(mat, mat, 55);
+				Assert::AreEqual(unique_test(mat, mat), 1);
 			}
+			fclose(r);
  		}
 	};
 }

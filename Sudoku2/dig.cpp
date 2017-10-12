@@ -3,10 +3,7 @@
 #define HOLE_J 0
 #define REPEAT 100
 
-UnitMaps unitmaps;
-int condition[SIZE*SIZE] = { 0 };
-
-int main() {
+int main_dig() {
 	int mat[SIZE*SIZE] = {
 		6,7,5,8,9,1,4,3,2,
 		4,9,2,6,7,3,1,8,5,
@@ -21,24 +18,22 @@ int main() {
 	int out[SIZE*SIZE] = { 0 };
 
 	for (int rep = 0; rep < REPEAT; rep++) {
-		unitmaps.~UnitMaps();
-		new(&unitmaps)UnitMaps;
-		dig(mat, out, 55);
-		unitmaps.show();
+		cout << dig(mat, out, 55);
 	}
 	//display_1d(out, SIZE*SIZE, 9);
 	getchar();
 	return 0;
 }
 
-bool dig(int mat[SIZE*SIZE], int out[SIZE*SIZE], int dig_tg) {
-	
+int dig(int mat[SIZE*SIZE], int out[SIZE*SIZE], int dig_tg) {
+	UnitMaps unitmaps;
 	unitmaps.read_matrix(mat);
-
-	return try_dig(HOLE_I, HOLE_J, 0 , dig_tg, out);
+	try_dig(unitmaps, HOLE_I, HOLE_J, 0 , dig_tg, out);
+	//unitmaps.show();
+	return unitmaps.blank;
 }
 
-bool try_dig(int dig_x, int dig_y, int dig_count, int dig_tg, int out[SIZE*SIZE]) {
+bool try_dig(UnitMaps & unitmaps, int dig_x, int dig_y, int dig_count, int dig_tg, int out[SIZE*SIZE]) {
 	//cout << "dug: " << dig_count << endl;
 	if (dig_tg == dig_count) {
 		return true;
@@ -48,7 +43,7 @@ bool try_dig(int dig_x, int dig_y, int dig_count, int dig_tg, int out[SIZE*SIZE]
 		unitmaps.hole(dig_x, dig_y);
 		//unitmaps.show();
 		if (unitmaps.get_decisive_none_zero(decisive_figure, x, y)) {
-			return try_dig(x, y, dig_count + 1, dig_tg, out);
+			return try_dig(unitmaps, x, y, dig_count + 1, dig_tg, out);
 		}
 	}
 	//cout << "failure" << endl;

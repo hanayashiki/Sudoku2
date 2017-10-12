@@ -259,6 +259,7 @@
     <ClCompile Include="Sudoku2.cpp" />
     <ClCompile Include="template_sudoku.cpp" />
     <ClCompile Include="templet.cpp" />
+    <ClCompile Include="unique_test.cpp" />
     <ClCompile Include="unitmaps.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
