@@ -136,7 +136,8 @@ bool FgMap::get_decisive(int & figure, int &i, int &j) const{
 	int min_index = 0;
 	int min_count = INT32_MAX;
 	for (int fig_index = 0; fig_index < SIZE; fig_index++) {
-		if (pos_count[fig_index] != 0 && (pos_count[fig_index] < min_count)) {
+		index2co(get_one(map[fig_index]), i, j);
+		if (pos_count[fig_index] != 0 && (pos_count[fig_index] < min_count) && (Upper->matrix[i][j] == 0)) {
 			min_index = fig_index;
 			min_count = pos_count[fig_index];
 		}

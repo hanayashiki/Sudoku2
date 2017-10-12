@@ -5,6 +5,7 @@ UnitMaps::UnitMaps() {
 }
 
 void UnitMaps::clear() {
+	blank = SIZE*SIZE;
 	for (int id = 0; id < SIZE; id++) {
 		row_maps[id].id = id;
 		column_maps[id].id = id;
@@ -31,6 +32,7 @@ void UnitMaps::clear() {
 
 bool UnitMaps::fill_in(int figure, int i, int j) {
 	int group_id = GET_GROUP_ID(i, j);
+	blank--;
 	assert(figure != 0);
 	assert(matrix[i][j] == 0);
 	matrix[i][j] = figure;
@@ -59,6 +61,7 @@ bool UnitMaps::fill_in(int figure, int i, int j) {
 
 int UnitMaps::hole(int i, int j) {
 	//cout << "hole :" << i << ", " << j << endl;
+	blank++;
 	assert(matrix[i][j] != 0);
 	int group_id = GET_GROUP_ID(i, j);
 	int old_fig = matrix[i][j];

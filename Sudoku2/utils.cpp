@@ -48,3 +48,20 @@ void display_1d(int* two_d, int m, int cluster) {
 	}
 	cout << endl;
 }
+
+bool read_file(FILE* f, int sudoku[SIZE*SIZE])
+{
+	int readin = 0;
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = 0; j < 9; j++)
+		{
+			int d;
+			readin += fscanf_s(f, "%d", &d);
+			sudoku[9 * i + j] = d;
+		}
+	}
+	//matrix.display();
+	//cout << "readin = " << readin << endl;
+	return readin == 81;
+}

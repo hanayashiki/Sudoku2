@@ -34,6 +34,7 @@ private:
 
 public:
 	int matrix[SIZE][SIZE] = { 0 };
+	int blank = SIZE*SIZE;
 	FgMap row_maps[9];
 	FgMap column_maps[9];
 	FgMap group_maps[9];

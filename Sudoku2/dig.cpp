@@ -6,7 +6,7 @@
 UnitMaps unitmaps;
 int condition[SIZE*SIZE] = { 0 };
 
-int main_dig() {
+int main() {
 	int mat[SIZE*SIZE] = {
 		6,7,5,8,9,1,4,3,2,
 		4,9,2,6,7,3,1,8,5,

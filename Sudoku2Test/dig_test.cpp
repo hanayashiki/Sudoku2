@@ -88,5 +88,18 @@ namespace Sudoku2Test
 				}
 			}
 		}
+
+		TEST_METHOD(dig_test)
+		{
+			FILE* r;
+			int mat[SIZE*SIZE] = { 0 };
+			fopen_s(&r,
+				"C:\\Users\\sandy2008\\Desktop\\ศํนค\\pair prgm\\sudoku2_new_repo\\Sudoku2\\Sudoku2Test\\sudoku.txt",
+				"r+");
+			while (read_file(r, mat)) {
+				unitmaps.read_matrix(mat);
+				unitmaps.
+			}
+ 		}
 	};
 }

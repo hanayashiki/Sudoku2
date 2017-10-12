@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-int main() {
+int main_rank_test() {
 	Rank rank;
 	char name[NAMESIZE];
 	double time;
