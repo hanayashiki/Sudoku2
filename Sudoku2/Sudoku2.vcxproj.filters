@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\tests">
+      <UniqueIdentifier>{49ac548c-5cdd-49aa-bb38-01c316640639}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -45,6 +48,30 @@
     <ClInclude Include="create.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="solve.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mode_generatror.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="exchanger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fgmap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="unitmaps.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="puzzle_creator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dig.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rank.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +100,45 @@
     </ClCompile>
     <ClCompile Include="create.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="solve.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mode_generator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="exchanger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fgmap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="unitmaps.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dig.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="puzzle_creator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rank.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rank_test.cpp">
+      <Filter>源文件\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="fgmap_test.cpp">
+      <Filter>源文件\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="limit_test.cpp">
+      <Filter>源文件\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="constraint_test.cpp">
+      <Filter>源文件\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="unique_test.cpp">
+      <Filter>源文件\tests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

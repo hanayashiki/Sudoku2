@@ -1,10 +1,9 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include <vector>
-#include "../Sudoku2/stdafx.h"
-#define SIZE 9
-#define GET_POS(i, j) ((i)*SIZE + (j))
 
+
+int results[SUDOKU_MAX][SIZE*SIZE];
+FILE* fout;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
@@ -38,9 +37,12 @@ namespace Sudoku2Test
 			}
 			else {
 				if ((*((*p)->sudoku)).length() > 0) {
+					if ((*sudoku).compare(*((*p)->sudoku)) == 0) {
+						fclose(fout);
+					}
 					Assert::AreNotEqual(*sudoku, *((*p)->sudoku));
 					add_sudoku_to_tree(depth + 1, &((*p)->ptrs[(*((*p)->sudoku))[depth + 1] - '1']), ((*p)->sudoku));
-					*((*p)->sudoku) = "";
+					(*p)->sudoku = new string("");
 				}
 				add_sudoku_to_tree(depth + 1, &((*p)->ptrs[(*sudoku)[depth + 1] - '1']), sudoku);
 			}
@@ -58,49 +60,63 @@ namespace Sudoku2Test
 			Treenode* root = create_treenode(-1, new string(""));
 			int counter = 0;
 
-			vector<vector<int>>* results = create_sudokus(number);
+			fout = fopen("C:\\Users\\65486\\Desktop\\output2.txt", "w");
+
+			//vector<vector<int>>* results = create_sudokus(number);
+			create_sudokus(number, results);
 
 			for (int i = 0; i < number; i++) {
 				sudoku = new string();
-				vector<int> sudoku_vector = results->at(number);
+				int* sudoku_ptr = results[i];
 				for (int j = 0; j < SIZE; j++) {
 					for (int k = 0; k < SIZE; k++) {
-						c = sudoku_vector[GET_POS(j, k)];
+						c = sudoku_ptr[GET_POS(j, k)] + '0';
 						(*sudoku) += c;
 						bit = (1 << (c - '1'));
-						row_record[i] |= bit;
-						column_record[j] |= bit;
-						block_record[(i / 3) * 3 + j / 3] |= bit;
+						row_record[j] |= bit;
+						column_record[k] |= bit;
+						block_record[(j / 3) * 3 + k / 3] |= bit;
 					}
 				}
-			}
+				
+				/*for (char &c : *sudoku) {
+					fputc(c, fout);
+				}
+				fputc('\n', fout);*/
 
-			// judge & initial
-			for (int i = 0; i < 9; i++) {
-				Assert::AreEqual(511, row_record[i]);
-				Assert::AreEqual(511, column_record[i]);
-				Assert::AreEqual(511, block_record[i]);
-				row_record[i] = 0;
-				column_record[i] = 0;
-				block_record[i] = 0;
+				// judge & initial
+				for (int i = 0; i < 9; i++) {
+					if (
+						row_record[i] != 511 ||
+						column_record[i] != 511 ||
+						block_record[i] != 511
+						) {
+						fclose(fout);
+					}
+					Assert::AreEqual(511, row_record[i]);
+					Assert::AreEqual(511, column_record[i]);
+					Assert::AreEqual(511, block_record[i]);
+					row_record[i] = 0;
+					column_record[i] = 0;
+					block_record[i] = 0;
+				}
+				add_sudoku_to_tree(-1, &root, sudoku);
+				counter++;
 			}
-			add_sudoku_to_tree(-1, &root, sudoku);
-			counter++;
 		}
-
-
 
 		TEST_METHOD(create)
 		{
 			// TODO: 在此输入测试代码
-			test_c(1000);
+			test_c(10000);
+
 		}
 
-		TEST_METHOD(test_vec)
+		/*TEST_METHOD(test_vec)
 		{
 			vector<int> v = test_vector();
-			getchar();
-		}
+			//getchar();
+		}*/
 
 	};
 }

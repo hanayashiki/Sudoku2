@@ -29,14 +29,15 @@ void Template_sudoku::record(FILE* fout, int* index, char buffer[]) {
 	}
 }
 
-void Template_sudoku::create_from_template(vector<int> & sudoku) {
-	int counter = 0;
+void Template_sudoku::create_from_template(int sudoku[]) {
+	int index = 0;
 
 	for (int i = 0; i < 8; i += 3) { // each big line
 		for (int j = 0; j < 3; j++) { // each small line
 			for (int k = 0; k < 3; k++) { // each block
 				for (char &c : templet->line[i + k][j]) {
-					sudoku.push_back(code[c - '0'] - '0');
+					//sudoku.push_back(code[c - '0'] - '0');
+					sudoku[index++] = code[c - '0'] - '0';
 				}
 			}
 		}

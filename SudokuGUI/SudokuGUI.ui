@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SudokuGUIClass</class>
+ <widget class="QMainWindow" name="SudokuGUIClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>467</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SudokuGUI</string>
+  </property>
+  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>467</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_game">
+    <property name="title">
+     <string>Game</string>
+    </property>
+    <widget class="QMenu" name="menu_newGame">
+     <property name="title">
+      <string>New Game</string>
+     </property>
+     <addaction name="action_easy"/>
+     <addaction name="action_normal"/>
+     <addaction name="action_hard"/>
+    </widget>
+    <addaction name="menu_newGame"/>
+   </widget>
+   <addaction name="menu_game"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action123">
+   <property name="text">
+    <string>555</string>
+   </property>
+  </action>
+  <action name="actionEASY">
+   <property name="text">
+    <string>EASY</string>
+   </property>
+  </action>
+  <action name="actionNew_Game_2">
+   <property name="text">
+    <string>New_Game</string>
+   </property>
+  </action>
+  <action name="action_easy">
+   <property name="text">
+    <string>Easy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
+   </property>
+  </action>
+  <action name="action_normal">
+   <property name="text">
+    <string>Normal</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+1</string>
+   </property>
+  </action>
+  <action name="action_hard">
+   <property name="text">
+    <string>Hard</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+2</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="SudokuGUI.qrc"/>
+ </resources>
+ <connections/>
+</ui>

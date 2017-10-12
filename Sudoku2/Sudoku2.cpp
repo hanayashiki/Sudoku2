@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 
-int solve_sudoku(FILE* subject);
+/*int solve_sudoku(FILE* subject);
 bool fill_sudoku(Subject_sudoku* sudoku, FILE* fout);
 int create_sudoku(int number);
 bool guess_value(Box* box, Subject_sudoku* sudoku, FILE* fout);
@@ -56,9 +56,10 @@ int main2(int argc, char* argv[]) {
 		cout << "unknown function";
 		return 0;
 	}
-}
+	return 0;
+}*/
 
-int solve_sudoku(FILE* subject) {
+/*int solve_sudoku(FILE* subject) {
 	Subject_sudoku* sudoku;
 	string code = "";
 	int number_counter = 0;
@@ -134,4 +135,4 @@ bool guess_value(Box* box, Subject_sudoku* sudoku, FILE* fout) {
 		}
 	}
 	return false;
-}
+}*/

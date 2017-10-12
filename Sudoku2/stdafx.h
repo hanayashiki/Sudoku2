@@ -4,20 +4,29 @@
 //
 
 #pragma once
-#define BUFFER_SIZE 1'000'000
-#define SIZE 9
-#define GET_BLOCKNO(ROWNO, COLUMNNO) (ROWNO / 3) * 3 + (COLUMNNO / 3)
-
 #include "targetver.h"
-
 #include <stdio.h>
 #include <tchar.h>
+
+// TODO: 在此处引用程序需要的其他头文件
+
+#define BUFFER_SIZE 1'000'000
+#define SIZE 9
+#define BLOCK_SIZE 3				// -- the length of a block's side
+#define GET_POS(ROWNO, COLUMNNO) ((ROWNO)*SIZE + (COLUMNNO))
+#define GET_BLOCKNO(ROWNO, COLUMNNO) (ROWNO / 3) * 3 + (COLUMNNO / 3)
+
 #include <iostream>  
+using namespace std;
+
+#ifndef __TEXT_H__
+#define __TEXT_H__
+
 #include <algorithm>  
 #include <string> 
 #include <vector>
+#include <list>
 #include <assert.h>
-#include "stdafx.h"
 #include "templet.h"
 #include "template_sudoku.h"
 #include "subject_sudoku.h"
@@ -25,5 +34,14 @@
 #include "subject_sudoku.h"
 #include "group.h"
 #include "utils.h"
+#include "exchanger.h"
 #include "create.h"
-// TODO: 在此处引用程序需要的其他头文件
+#include "solve.h"
+#include "mode_generatror.h"
+#include "fgmap.h"
+#include "unitmaps.h"
+#include "fgmap.h"
+#include "dig.h"
+#include "rank.h"
+
+#endif

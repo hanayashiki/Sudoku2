@@ -29,5 +29,11 @@
     <ClCompile Include="create_test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="solve_test.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dig_test.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
