@@ -222,6 +222,7 @@
     <ClInclude Include="group.h" />
     <ClInclude Include="mode_generatror.h" />
     <ClInclude Include="puzzle_creator.h" />
+    <ClInclude Include="rank.h" />
     <ClInclude Include="solve.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="subject_sudoku.h" />
@@ -243,6 +244,8 @@
     <ClCompile Include="limit_test.cpp" />
     <ClCompile Include="mode_generator.cpp" />
     <ClCompile Include="puzzle_creator.cpp" />
+    <ClCompile Include="rank.cpp" />
+    <ClCompile Include="rank_test.cpp" />
     <ClCompile Include="solve.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

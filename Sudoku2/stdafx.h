@@ -42,5 +42,6 @@ using namespace std;
 #include "unitmaps.h"
 #include "fgmap.h"
 #include "dig.h"
+#include "rank.h"
 
 #endif
